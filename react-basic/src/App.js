@@ -1,26 +1,16 @@
 import Transaction from './components/Transaction'
 import './components/app.css'
 import FormComponent from './components/FormComponent'
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect } from 'react'
 import indexContext from './contexts/indexContext'
 import ReportComponent from './components/ReportComponent'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 function App() {
   const [items, setItems] = useState([])
 
   const [reportIncome, setReportIncome] = useState(0)
   const [reportExpense, setReportExpense] = useState(0)
-  const [showReport, setShowReport] = useState(true)
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case 'SHOW':
-        return setShowReport(true)
-      case 'HIDE':
-        return setShowReport(false)
-    }
-  }
-  const [result, dispatch] = useReducer(reducer, showReport)
 
   const onAddNewItem = (newItem) => {
     setItems([newItem, ...items])
@@ -47,24 +37,18 @@ function App() {
         <h1 style={{ color: 'red', textAlign: 'center' }}>
           แอพบัญชีรายรับ - รายจ่าย
         </h1>
-        {showReport && <ReportComponent />}
-        <FormComponent onAddNewItem={onAddNewItem} />
-        <Transaction items={items} />
-        <h1>{result}</h1>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => dispatch({ type: 'SHOW' })}
-        >
-          แสดง
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => dispatch({ type: 'HIDE' })}
-        >
-          ซ่อน
-        </button>
+        <Router>
+          <Link to="/">แสดงรายงาน</Link> |<Link to="/insert">บันทึกข้อมูล</Link>
+          <Switch>
+            <Route path="/" exact>
+              <ReportComponent />
+            </Route>
+            <Route path="/insert">
+              <FormComponent onAddNewItem={onAddNewItem} />
+              <Transaction items={items} />
+            </Route>
+          </Switch>
+        </Router>
       </div>
     </indexContext.Provider>
   )

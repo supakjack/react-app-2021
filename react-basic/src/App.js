@@ -3,6 +3,7 @@ import './components/app.css'
 import FormComponent from './components/FormComponent'
 import { v4 as uuidv4 } from 'uuid'
 import { useState } from 'react'
+import indexContext from './contexts/indexContext'
 
 function App() {
   const [items, setItems] = useState([
@@ -18,13 +19,15 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1 style={{ color: 'red', textAlign: 'center' }}>
-        แอพบัญชีรายรับ - รายจ่าย
-      </h1>
-      <FormComponent onAddNewItem={onAddNewItem} />
-      <Transaction items={items} />
-    </div>
+    <indexContext.Provider value={'รายการทั้งหมด'}>
+      <div className="container">
+        <h1 style={{ color: 'red', textAlign: 'center' }}>
+          แอพบัญชีรายรับ - รายจ่าย
+        </h1>
+        <FormComponent onAddNewItem={onAddNewItem} />
+        <Transaction items={items} />
+      </div>
+    </indexContext.Provider>
   )
 }
 

@@ -2,7 +2,7 @@ import Item from './Item'
 
 function Transaction({ items }) {
   return (
-    <ul>
+    <ul className="list-group">
       {items.map((item) => (
         <Item {...item} key={item.id} />
       ))}

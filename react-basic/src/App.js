@@ -9,8 +9,8 @@ function App() {
     { id: uuidv4(), title: 'ค่าน้ำมัน', amount: 5000 },
     { id: uuidv4(), title: 'ค่าเช่าบ้าน', amount: 8000 },
     { id: uuidv4(), title: 'เงินเดือน', amount: 70000 },
-    { id: uuidv4(), title: 'จ่ายค่าประกัน', amount: 300 },
-    { id: uuidv4(), title: 'ค่าเดินทาง', amount: 800 }
+    { id: uuidv4(), title: 'จ่ายค่าประกัน', amount: -300 },
+    { id: uuidv4(), title: 'ค่าเดินทาง', amount: -800 }
   ])
 
   const onAddNewItem = (newItem) => {
@@ -18,13 +18,13 @@ function App() {
   }
 
   return (
-    <>
+    <div className="container">
       <h1 style={{ color: 'red', textAlign: 'center' }}>
         แอพบัญชีรายรับ - รายจ่าย
       </h1>
       <FormComponent onAddNewItem={onAddNewItem} />
       <Transaction items={items} />
-    </>
+    </div>
   )
 }
 

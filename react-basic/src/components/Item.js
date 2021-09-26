@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
-import './Item.css'
 
 const Item = ({ amount, title }) => {
+  const status = amount > 0 ? 'bg-success' : 'bg-danger'
   return (
-    <li className="item">
-      {title} <span> {amount}</span>
+    <li className="list-group-item d-flex justify-content-between">
+      <span>{title}</span>
+      <span className={`badge rounded-pill ${status}`}>{amount}</span>
     </li>
   )
 }

@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 const FormComponent = ({ onAddNewItem }) => {
   const [title, setTitle] = useState('')
-  const [amount, setAmount] = useState('')
+  const [amount, setAmount] = useState(0)
+  const [formValid, setFormValid] = useState(false)
 
   const inputTitle = (event) => {
     setTitle(event.target.value)
@@ -24,6 +25,11 @@ const FormComponent = ({ onAddNewItem }) => {
     setTitle('')
     setAmount(0)
   }
+
+  useEffect(() => {
+    const checkData = title.trim().length > 0 && amount !== 0
+    setFormValid(checkData)
+  }, [amount, title])
 
   return (
     <div>
@@ -49,7 +55,11 @@ const FormComponent = ({ onAddNewItem }) => {
           />
         </div>
         <div className="col-auto">
-          <button type="submit" className="btn btn-success mb-3">
+          <button
+            type="submit"
+            className="btn btn-primary mb-3"
+            disabled={!formValid}
+          >
             เพิ่มข้อมูล
           </button>
         </div>

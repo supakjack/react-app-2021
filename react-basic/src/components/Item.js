@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
 import './Item.css'
 
-const Item = (props) => {
-  const { title, amount } = props
+const Item = ({ amount, title }) => {
   return (
     <li className="item">
-      {title} <span>- {amount}</span>
+      {title} <span> {amount}</span>
     </li>
   )
 }

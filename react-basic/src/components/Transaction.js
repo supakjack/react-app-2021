@@ -1,16 +1,14 @@
 import Item from './Item'
 import indexContext from '../contexts/indexContext'
+import { useContext } from 'react'
 
-function Transaction({ items }) {
+const Transaction = ({ items }) => {
   return (
-    <>
-      <indexContext.Consumer>{(value) => <p>{value}</p>}</indexContext.Consumer>
-      <ul className="list-group">
-        {items.map((item) => (
-          <Item {...item} key={item.id} />
-        ))}
-      </ul>
-    </>
+    <ul className="list-group">
+      {items.map((item) => (
+        <Item {...item} key={item.id} />
+      ))}
+    </ul>
   )
 }
 

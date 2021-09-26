@@ -25,8 +25,8 @@ function App() {
       amounts
         .filter((amount) => amount < 0)
         .reduce((total, amount) => total + amount, 0) * -1
-    setReportExpense(expense)
-    setReportIncome(income)
+    setReportExpense(expense.toFixed(2))
+    setReportIncome(income.toFixed(2))
   }, [items])
 
   return (
